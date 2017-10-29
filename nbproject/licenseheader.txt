@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Proyecto de Ingenieria de Software 2017-1
+${licensePrefix}Portal del terapeuta Sistema ATRLO${licensePrefix}
+${licensePrefix}MARIO BOLANOS, JUAN SEBASTIAN LOZANO, ANDRES ACHURY${licensePrefix}
+<#if licenseLast??>
+${licenseLast}
+</#if>
