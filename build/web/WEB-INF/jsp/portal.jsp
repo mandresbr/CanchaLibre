@@ -77,29 +77,38 @@
 				<span class="icon-bar"></span>
 			</button>
 			
+                        <button type="button" onclick="goBack()" class="btn btn-default navbar-btn pull-left" style="margin-right:10px">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        </button>
+                    
+                                                
                         <img src="<c:url value="/images/canchalibre.png"/>" alt="CL" class="img-incs" width="70" height="50">
-                        <a class="navbar-brand" href="portal.htm" onclick="location.href='${pageContext.request.contextPath}/portal.htm'">CANCHA LIBRE RESERVAS</a>
                         
+                        
+                        <a class="navbar-brand" href="reserva.htm?cedula=${cedula}" onclick="location.href = '${pageContext.request.contextPath}/reserva.htm'">CANCHA LIBRE RESERVAS</a>
+                        <form class="navbar-form navbar-right" method="GET" role="search">
+				<div class="form-group">
+					<input type="text" id="searcht" class="form-control" placeholder="Buscar">
+				</div>
+                                </form>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
 			
 			<ul class="nav navbar-nav navbar-right">
-                            
-                                <form class="navbar-form navbar-left" method="GET" role="search">
-				<div class="form-group">
-					<input type="text" id="searcht" class="form-control" placeholder="Buscar">
-				</div>
-                                </form>
+                                
+                                <a class="navbar-brand" href="reservasuser.htm?id=${cedula}" onclick="location.href='${pageContext.request.contextPath}/reservasuser.htm'">MIS RESERVAS</a>
+                                
 				<!--<li><a href="http://www.ciegosysordos.org/" target="_blank">DABG</a></li>-->
                                 
 				<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Perfil
+						Opciones
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							
+                                                    <li><a href="usuario.htm?cedula=${cedula}" onclick="location.href='${pageContext.request.contextPath}/usuario.htm'">Mi Perfil</a></li>	
+                                                    <li><a href="contactenos.htm?cedula=${cedula}" onclick="location.href='${pageContext.request.contextPath}/contactenos.htm'">Contáctenos</a></li>
 							<li><a href="login.htm" onclick="location.href='${pageContext.request.contextPath}/login.htm'">Cerrar Sesión</a></li>
 						</ul>
 					</li>
@@ -112,16 +121,13 @@
 		<div class="col-md-12 content">
             <div class="panel panel-default">
                 <div class="panel-heading" style="font-size:180%">
-                    Canchas Disponibles
+                    Establecimientos disponibles para reserva de cancha a las ${time}
                 </div>
                 <div class="panel-body">
                     <div class="row placeholders">
                      <c:forEach items="${datos}" var="dato">
                         <div class="col-xs-6 col-sm-3 placeholder">
-                            <!--<a href="<c:url value="pacientes.htm?id=${dato.idpaciente}"/>"><img src="<c:url value="/images/${dato.path}"/>" width="700" height="700"
-                                              class="img-responsive" alt="Generic placeholder thumbnail"></a>
-                            -->
-                            <a href="<c:url value="cancha.htm?id=${dato.codcancha}"/>"><img src="<c:url value="/images/${dato.path}"/>" width="700" height="700"
+                            <a href="<c:url value="cancha.htm?id=${dato.codcancha}&fecha=${date}&hora=${time}&cedula=${cedula}"/>"><img src="<c:url value="/images/${dato.path}"/>" width="700" height="700"
                                               class="img-responsive" alt="Generic placeholder thumbnail"></a>
                           <h4 class="nombre"><c:out value="${dato.nombre}"/></h4>
                           <span class="text-muted"><c:out value="${dato.direccion}"/></span>
@@ -130,7 +136,12 @@
                     
                 </div>
                 </div>
-                 
+                 <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+
             </div>
 		</div>
 		<footer class="pull-left footer">

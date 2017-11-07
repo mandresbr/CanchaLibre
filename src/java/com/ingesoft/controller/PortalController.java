@@ -32,20 +32,18 @@ public class PortalController{
         @RequestMapping("/portal")
         public ModelAndView showPortal(HttpServletRequest request, HttpServletResponse response) {
             ModelAndView mav = new ModelAndView("portal");
-            String query = "select * from tbcancha";
-            List datos = this.jdbcTemplate.queryForList(query);
+            String date = request.getParameter("fecha");
+            String time = request.getParameter("hora");
+            String cedula = request.getParameter("cedula");
+            String query = "select codcancha,path,nombre from  (select codcancha from  (select codcancha from tbcancha where codcancha not in (select codcancha from tbreserva where fecha=? and hora=?) ) as temp union (select codcancha from tbcancha natural join tbreserva where fecha=? and hora=? and  canchasdisponibles>0)) as imp natural join tbcancha";
+            List datos = this.jdbcTemplate.queryForList(query,new Object[] {date,time,date,time});
             mav.addObject("datos", datos);
-//            String qName = jdbcTemplate.queryForObject(
-//                query, new Object[] {}, String.class);
+            mav.addObject("date", date);
+            mav.addObject("time", time);
+            mav.addObject("cedula",cedula);
             return mav;
         }
         
-        
-        @RequestMapping(value = "/pacientes", method = RequestMethod.GET)
-        public ModelAndView showPacientes(HttpServletRequest request, HttpServletResponse response) {
-            ModelAndView mav = new ModelAndView("pacientes");
-            return mav;
-        }
     
 }
 

@@ -39,13 +39,23 @@ public class LoginController implements Controller{
            
            if (qCount>0)
            {
-                String tQuery = "select nombres from tbusuario where correo=? and clave=?";
-                String qName = jdbcTemplate.queryForObject(
-                tQuery, new Object[] {userName,password}, String.class);
-                ModelAndView mav = new ModelAndView("redirect:/portal.htm");
-                mav.addObject("nombre", qName);
-                //mav.addObject("idterapeuta",)
-                return mav;
+                
+                String id="select cedula from tbusuario where correo=? and clave=?";
+                    String cedula=jdbcTemplate.queryForObject(id,new Object[]{userName,password},String.class);
+                String Query = "select codtipousuario from tbusuario where clave=?";
+                int q = jdbcTemplate.queryForObject(Query, new Object[] {password},Integer.class);
+                if (q==2){
+                    ModelAndView mav = new ModelAndView("redirect:/propietario.htm");
+                   
+                    mav.addObject("cedula", cedula);
+                    return mav;
+                }else{
+                    
+                    ModelAndView mav = new ModelAndView("redirect:/reserva.htm");
+                    mav.addObject("cedula",cedula);
+                    return mav;
+                }
+               
            }else{
              return new ModelAndView("login");
            }

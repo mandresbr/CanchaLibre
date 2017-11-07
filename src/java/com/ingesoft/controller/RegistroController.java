@@ -49,8 +49,9 @@ public class RegistroController{
                 String tQuery = "INSERT INTO tbusuario VALUES (?,?,?,?,?,?)";
                 jdbcTemplate.update(
                 tQuery, new Object[]{userId,userName,userLastName,userEmail,password,3});
-                ModelAndView mav = new ModelAndView("redirect:/portal.htm");
-                mav.addObject("nombre", userName);
+                ModelAndView mav = new ModelAndView("redirect:/reserva.htm");
+                mav.addObject("cedula", userId);
+                
                 return mav;
            }else{
                 return new ModelAndView("registro");    

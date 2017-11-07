@@ -83,7 +83,7 @@
 			</button>
 			
                         <img src="<c:url value="/images/canchalibre.png"/>" alt="CL" class="img-incs" width="70" height="50">
-                        <a class="navbar-brand" href="portal.htm" onclick="location.href='${pageContext.request.contextPath}/portal.htm'">CANCHA LIBRE RESERVAS</a>
+                        <a class="navbar-brand" href="login.htm" onclick="location.href='${pageContext.request.contextPath}/login.htm'">CANCHA LIBRE RESERVAS</a>
                         
 		</div>
 
@@ -147,9 +147,9 @@
                 </div>
             </div>
 		<footer class="pull-left footer">
-			<p class="col-md-12">
-				<hr class="divider">
-				Copyright &COPY; 2017 <a>DABG</a>
+			<p class="col-md-12" style="text-align: center">
+				<hr class="divider" >
+				Copyright &COPY; 2017 <a>DABG</a>. Comunicate sin costo a nuestra linea gratuita nacional: 018000-5555-5555
 			</p>
 		</footer>
 	</div>

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <style>
             /*     Set height of the grid so .sidenav can be 100% (adjust as needed) 
                 .row.content {height: 550px}
@@ -100,7 +101,7 @@
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
             }
-          
+
         </style>
 
     <body>
@@ -116,10 +117,41 @@
                         <span class="icon-bar"></span>
                     </button>
 
+                    <button type="button" onclick="goBack()" class="btn btn-default navbar-btn pull-left" style="margin-right:10px">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </button>
+
                     <img src="<c:url value="/images/canchalibre.png"/>" alt="CL" class="img-incs" width="70" height="50">
-                    <a class="navbar-brand" href="portal.htm" onclick="location.href = '${pageContext.request.contextPath}/portal.htm'">CANCHA LIBRE RESERVAS</a>
+
+                    <a class="navbar-brand" href="reserva.htm?cedula=${cedula}" onclick="location.href = '${pageContext.request.contextPath}/reserva.htm'">CANCHA LIBRE RESERVAS</a>
 
                 </div>
+                    
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
+			
+			<ul class="nav navbar-nav navbar-right">
+                                <a class="navbar-brand" href="reservasuser.htm?id=${cedula}" onclick="location.href='${pageContext.request.contextPath}/reservasuser.htm'">MIS RESERVAS</a>
+                                
+                                
+				<li class="dropdown ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Opciones
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+                                                        <li><a href="usuario.htm?cedula=${cedula}" onclick="location.href='${pageContext.request.contextPath}/usuario.htm'">Mi Perfil</a></li>
+							<li><a href="contactenos.htm?cedula=${cedula}" onclick="location.href='${pageContext.request.contextPath}/contactenos.htm'">Contáctenos</a></li>
+							<li><a href="login.htm" onclick="location.href='${pageContext.request.contextPath}/login.htm'">Cerrar Sesión</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+                <script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                </script>
+
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
@@ -136,16 +168,35 @@
                         <div class="userProfileInfo">
                             <div class="image text-center">
                                 <img src="<c:url value="/images/${path}"/>" alt="#" class="img-responsive">
-                                
                             </div>
                             <div  class="box">
-                                <div style="margin-bottom:20px"class="name"><strong>${name}</strong></div>
+                                <div style="font-size:25px;margin-top:20px;margin-bottom:20px"class="name"><strong>${name}</strong></div>
                                 <div style="margin-bottom:20px"class="info">
-                                    
-                                    <span><i class=""></i> ${dir}. <br> Cali. <br>Colombia.<br></span>
-                              
+
+                                    <span style="font-size:20px;"><i class=""></i> ${dir}. <br> Cali. <br>Colombia.<br></span>
+
                                 </div>
-                                <div class="res"><a href="<c:url value="reserva.htm?id=${id}"/>" class="btn btn-lg btn-primary btn-block">Reservar Cancha</a>   </div>    
+                                
+                                <div class="name" style="font-size:25px;"><strong>Detalles de Reserva</strong></div>
+                                <div style="margin-bottom:20px"class="info">
+
+                                    <span style="font-size:20px;"><i class=""></i>Fecha: ${fecha}. <br>Hora: ${hora}.<br></span>
+
+                                </div>
+                                 
+                                <form class="form-signin" method="POST"  >
+                                    <input type="hidden" name="fecha" value=${date}  ><br>
+                                    <input type="hidden" name="cedula" value=${cedula}  ><br>
+                                    <input type="hidden" name="hora" value=${time}><br>
+                                    <input type="hidden" name="idC" value=${id}><br>
+                                    <input type="hidden" name="direccion" value=${direccion}><br>
+                                    <button style="position:relative;top:-100px"class="btn btn-lg btn-primary btn-block" name="submit" type="submit">
+                                        Reservar Cancha
+                                    </button>
+
+                                </form>
+
+
                             </div>
                         </div>
                     </div>
@@ -157,7 +208,7 @@
                             <ul class="nav nav-tabs userProfileTabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#tab-item-1" aria-controls="tab-item-1" role="tab" data-toggle="tab" aria-expanded="true">Inicio</a></li>
                                 <li role="presentation" class=""><a href="#tab-item-3" aria-controls="tab-item-3" role="tab" data-toggle="tab" aria-expanded="false">Fotos</a></li>
-                                <li role="presentation" class=""><a href="#tab-item-4" aria-controls="tab-item-4" role="tab" data-toggle="tab" aria-expanded="false">Precios</a></li>
+                                <li role="presentation" class=""><a href="#tab-item-4" aria-controls="tab-item-4" role="tab" data-toggle="tab" aria-expanded="false">Precio</a></li>
                             </ul>
 
                             <div class="tab-content">
@@ -165,7 +216,7 @@
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab-item-1">
                                     <div class="userProfileContent">
                                         <div class="i">
-                                
+
                                             <h2 class="boxHeadline">Quiénes somos</h2>
                                             <p>Somos una organización empresarial de proyección deportiva, educativa, recreativa, prestamos el servicio de alquiler canchas de Fútbol y Voley Playa, somos los mejores referentes en entretenimiento futbolero en la ciudad de Cali. </p>
                                         </div>
@@ -174,7 +225,7 @@
                                             <h2 class="boxHeadline">Características</h2>
                                             <ul class="simpleListings">
                                                 <li>
-                                                    
+
                                                     <p>5 Canchas de Fútbol 5 en Grama.</p>
                                                 </li>
                                                 <li>
@@ -192,37 +243,48 @@
                                                 <li>
                                                     <p>Amplia plazoleta y zona de hidratación.</p>
                                                 </li>
-                                             
-                                             
+
+
                                             </ul>
                                         </div>
 
-                                        
+
                                     </div>
                                 </div>
 
-                                
+
 
                                 <!-- Photos -->
                                 <div role="tabpanel" class="tab-pane fade" id="tab-item-3">
-                                    
+
                                     <h2 class="boxHeadline">Galería Fotográfica</h2>
                                     <img src="<c:url value="/images/${path}"/>" width="700" height="700"
-                                        class="img-responsive" alt="Generic placeholder thumbnail">
+                                         class="img-responsive" alt="Generic placeholder thumbnail">
                                 </div>
 
                                 <!-- Friends -->
                                 <div role="tabpanel" class="tab-pane fade" id="tab-item-4">
-                                    Las canchas serán alquiladas por horas, y tendrán tarifas diferenciales según el día y la hora en que sea separada por el cliente.
-                                    El alquiler incluirá balón de fútbol y petos para ambos equipos. Al encargado del alquiler se le entregara una tarjeta, la cual será presentada y sellada cada que se alquile la cancha y cuando complete 10 partidos seguidos se le obsequiara una hora gratis. 
-                                    Opcionalmente, se conseguirá arbitro para los partidos si el cliente así lo quiere.
+                                    Las canchas serán alquiladas por horas.
+                                    El alquiler incluirá balón de fútbol y petos para ambos equipos.
+                                    
+                                    <div class="userProfileContent">
+                                        <div class="i">
+
+                                            <h2 class="boxHeadline">Precio: ${precio} COP</h2>
+                                            
+                                        </div>
+
+
+
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <footer class="pull-left footer">
                 <p class="col-md-12">
                 <hr class="divider">
@@ -230,7 +292,7 @@
                 </p>
             </footer>
         </div>
-
+        
     </body>
 </html>
 

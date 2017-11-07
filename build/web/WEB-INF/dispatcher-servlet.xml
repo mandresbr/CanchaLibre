@@ -26,6 +26,14 @@
                 <prop key="cancha.htm">CanchaController</prop>
                <prop key="registro.htm">RegistroController</prop>
                <prop key="reserva.htm">ReservaController</prop>
+               <prop key="reservasuser.htm">ReservasUserController</prop>
+               <prop key="propietario.htm">PropietarioController</prop>
+               <prop key="Infocancha.htm">InfocanchaController</prop>
+               <prop key="contactenos.htm">ContactenosController</prop>
+               <prop key="contactenos2.htm">ContactenosController2</prop>
+               <prop key="usuario.htm">UsuarioController</prop>
+               <prop key="usuario2.htm">UsuarioController2</prop>
+               
             </props>
         </property>
     </bean>
@@ -44,5 +52,12 @@
     <bean name="CanchaController" class="com.ingesoft.controller.CanchaController" />
    <bean name="RegistroController" class="com.ingesoft.controller.RegistroController" />
    <bean name="ReservaController" class="com.ingesoft.controller.ReservaController" />
-          
+   <bean name="ReservasUserController" class="com.ingesoft.controller.ReservasUserController" />
+   <bean name="PropietarioController" class="com.ingesoft.controller.PropietarioController" />
+   <bean name="InfocanchaController" class="com.ingesoft.controller.InfocanchaController" />
+   <bean name="ContactenosController" class="com.ingesoft.controller.ContactenosController" />
+   <bean name="ContactenosController2" class="com.ingesoft.controller.ContactenosController2" />
+   <bean name="UsuarioController" class="com.ingesoft.controller.UsuarioController" />
+   <bean name="UsuarioController2" class="com.ingesoft.controller.UsuarioController2" />
+   
 </beans>

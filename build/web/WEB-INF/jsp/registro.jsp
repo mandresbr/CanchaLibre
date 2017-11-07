@@ -114,11 +114,22 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			
+                        
+                        <button type="button" onclick="goBack()" class="btn btn-default navbar-btn pull-left" style="margin-right:10px">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        </button>
+                    
                         <img src="<c:url value="/images/canchalibre.png"/>" alt="CL" class="img-incs" width="70" height="50">
-                        <a class="navbar-brand" href="portal.htm" onclick="location.href='${pageContext.request.contextPath}/portal.htm'">CANCHA LIBRE RESERVAS</a>
+                        
+                        <a class="navbar-brand" href="login.htm" onclick="location.href='${pageContext.request.contextPath}/login.htm'">CANCHA LIBRE RESERVAS</a>
                         
 		</div>
+                
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			

@@ -121,7 +121,7 @@
                     
                         <img src="<c:url value="/images/canchalibre.png"/>" alt="CL" class="img-incs" width="70" height="50">
                         
-                        <a class="navbar-brand" href="login.htm" onclick="location.href='${pageContext.request.contextPath}/login.htm'">CANCHA LIBRE RESERVAS</a>
+                        <a class="navbar-brand" href="reserva.htm?cedula=${cedula}" onclick="location.href = '${pageContext.request.contextPath}/reserva.htm'">CANCHA LIBRE RESERVAS</a>
                         
 		</div>
                 
@@ -134,23 +134,53 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
 		
-			</div><!-- /.navbar-collapse -->
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Opciones
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+                                                    <li><a href="usuario.htm?cedula=${cedula}" onclick="location.href='${pageContext.request.contextPath}/usuario.htm'">Mi Perfil</a></li>
+                                                    <li><a href="contactenos.htm" onclick="location.href='${pageContext.request.contextPath}/contactenos.htm'">Contáctenos</a></li>
+							<li><a href="login.htm" onclick="location.href='${pageContext.request.contextPath}/login.htm'">Cerrar Sesión</a></li>
+						</ul>
+					</li>
+				</ul>
 		</div><!-- /.container-fluid -->
 	</nav>
 	<div class="container-fluid main-container">
 		
-		<div class="wrapper">
-                    <form class="form-signin" method="POST">
-                <center><img src="${pageContext.request.contextPath}/images/canchalibre.png" alt="CL" style="width:274px;height:198px;"></center>
-              <h2 class="form-signin-heading">Registro Cancha Libre</h2>
-              <input type="text" class="form-control" name="name" placeholder="Nombres" required="" autofocus="" />
-              <input type="text" class="form-control" name="lastname" placeholder="Apellidos" required="" autofocus="" />
-              <input type="text" class="form-control" name="id" placeholder="Cédula" required="" autofocus="" />
-              <input type="text" class="form-control" name="user" placeholder="Correo Electrónico" required="" autofocus="" />
-              <input type="password" class="form-control" name="pass" placeholder="Contraseña" required=""/>      
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>   
-            </form>
-          </div>
+		<div class="col-md-12 content">
+            <div class="panel panel-default">
+                
+                <div class="panel-heading" style="font-size:180%; text-align: center">
+                    Reservas de ${cancha}  
+            </div>
+            <div>
+                <table >
+                    <tr style="text-align:center">
+                        <td align="center" width="200" height="50px"><strong>NOMBRE</strong></td>
+                        <td align="center" width="200" height="50px"><strong>APELLIDO</strong></td>
+                        <td align="center" width="200" height="50px"><strong>FECHA</strong></td>
+                        <td align="center" width="200" height="50px"><strong>HORA</strong></td>
+                        <td align="center" width="200" height="50px"><strong>PRECIO</strong></td>
+                        <td align="center" width="200" height="50px"><strong>ACCIÓN</strong></td>
+                    </tr>
+                    <c:forEach items="${datos}" var="dato">
+                        <tr>
+                            <td align="center"font style="text-transform: uppercase;">${dato.nombres}</td>
+                            <td align="center"font style="text-transform: uppercase;">${dato.apellidos}</td>
+                            <td align="center">${dato.fecha}</td>
+                            <td align="center">${dato.hora}</td>
+                            
+                            <td align="center">${dato.tarifa}</td>
+                            <td align="center"> <a href="Infocancha.htm?Act=${dato.codreserva}">ELIMINAR</a> </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+            </div>
+
 		<footer class="pull-left footer">
 			<p class="col-md-12">
 				<hr class="divider">
